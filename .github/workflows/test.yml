@@ -20,7 +20,7 @@ env:
   CORE_REPO_SHA: ${{ github.sha }}
 
 jobs:
-  benchmark:
+  build:
     env:
       py311: "3.11"
       RUN_MATRIX_COMBINATION: ${{ matrix.python-version }}-${{ matrix.package }}-${{

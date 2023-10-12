@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1697147203922,
+  "lastUpdate": 1697147929906,
   "repoUrl": "https://github.com/SecuringCarter/opentelemetry-python",
   "entries": {
     "OpenTelemetry Python Benchmarks - Python 3.11 - SDK": [
@@ -87,6 +87,35 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000006077084966979408",
             "extra": "mean: 100.00020136907696 sec\nrounds: 5"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Diego Hurtado",
+            "username": "ocelotl",
+            "email": "ocelotl@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "Diego Hurtado",
+            "username": "ocelotl",
+            "email": "ocelotl@users.noreply.github.com"
+          },
+          "id": "8fd8694166fe0ddede81fca75cc7564aece895af",
+          "message": "Increase time",
+          "timestamp": "2023-10-12T21:34:18Z",
+          "url": "https://github.com/SecuringCarter/opentelemetry-python/commit/8fd8694166fe0ddede81fca75cc7564aece895af"
+        },
+        "date": 1697147929131,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "opentelemetry-sdk/tests/performance/benchmarks/metrics/test_benchmarks.py::test_long",
+            "value": 0.00999998021321561,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000012014154517704132",
+            "extra": "mean: 100.0001978682354 sec\nrounds: 5"
           }
         ]
       }

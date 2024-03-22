@@ -41,7 +41,7 @@ jobs:
           path: ./sbom.zip
 
   add-release-artifact:
-    needs: generate-sboms
+    needs: generate-sbom
     runs-on: ubuntu-latest
     permissions:
       contents: write

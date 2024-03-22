@@ -4,8 +4,11 @@
 
 name: SBOM
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+        #  release:
+        #types: [published]
 
 permissions: read-all
 

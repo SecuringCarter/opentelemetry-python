@@ -4,10 +4,15 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
-    directory: /
+    directory: .github
     groups:
       github-actions:
         patterns:
           - "*"  # Group all Actions updates into a single larger pull request
+    schedule:
+      interval: daily
+
+  - package-ecosystem: pip
+    directory: /
     schedule:
       interval: daily

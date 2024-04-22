@@ -1,0 +1,17 @@
+name: Sigstore
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sigstore:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install OpenTelemetry API
+        run: pip install opentelemtery-api
+      - uses: sigstore/gh-action-sigstore-python@v2.1.1
+        with:
+          inputs: opentelemetry-api/pyproject.toml

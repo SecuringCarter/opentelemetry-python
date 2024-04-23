@@ -9,9 +9,15 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Install OpenTelemetry API
-        run: pip install opentelemtery-api
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+            # - name: Install OpenTelemetry API
+            # run: pip install -e opentelemtery-api
       - uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: opentelemetry-api/pyproject.toml

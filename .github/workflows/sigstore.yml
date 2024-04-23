@@ -4,20 +4,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  sigstore:
+  sign-pyproject:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'
-          architecture: 'x64'
-            # - name: Install OpenTelemetry API
-            # run: pip install -e opentelemtery-api
-      - uses: sigstore/gh-action-sigstore-python@v2.1.1
+
+      - name: Sign pyproject.toml
+        uses: sigstore/gh-action-sigstore-python@v2.1.1
         with:
           inputs: opentelemetry-api/pyproject.toml
+
+      - name: Zip the signed file
+        run: zip pyproject_sigstore.zip opentelemetry-api/pyproject.toml.sigstore
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PYPROJECT_SIGSTORE.zip
+          path: pyproject_sigstore.zip
+
+  add-signed-file:
+    needs: sign-pyproject
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: PYPROJECT_SIGSTORE.zip
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+￼       with:
+  ￼       upload_url: ${{ github.event.release.upload_url }}
+￼         asset_path: pyproject_sigstore.zip
+￼         asset_name: PYPROJECT_SIGSTORE.zip
+￼         asset_content_type: application/zip
